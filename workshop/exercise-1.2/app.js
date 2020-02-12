@@ -15,3 +15,57 @@
 
 // Challenge
 // Make the countdown live...
+
+const text = document.querySelector(".result");
+let body = document.querySelector("body");
+
+body.style.display = "flex";
+body.style.justifyContent = "center";
+body.style.alignContent = "center";
+body.style.alignItems = "center";
+body.style.height = "100vh";
+
+let counter = 5;
+text.innerText = `You have ${counter} second to click!`;
+
+document.querySelector(".time-text").innerHTML = "";
+
+
+let counterInterval = setInterval(function () {
+    // while (counter > 0) {
+    counter -= 1;
+    console.log(counter);
+    if (counter > 0) {
+        text.innerText = `You have ${counter} second to click!`;
+
+    } else clearInterval(counterInterval);
+    // }
+}, 1000);
+
+
+// text.style.position = "absolute";
+// text.style.top = "40vh";
+// text.style.left = "40vh";
+text.style.fontSize = "2rem";
+
+function youLose() {
+    text.innerText = "You lose!";
+}
+function youWin() {
+    text.innerText = "WINNER!";
+}
+
+setTimeout(function () {
+    if (didYouClick) {
+        clearTimeout();
+        youWin();
+    } else youLose();
+}, 5000)
+
+let didYouClick = false;
+
+window.addEventListener("click", function (event) {
+    if (event) {
+        didYouClick = true;
+    }
+})
